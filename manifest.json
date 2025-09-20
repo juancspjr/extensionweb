@@ -1,0 +1,104 @@
+{
+  "manifest_version": 3,
+  "name": "WebScraping Intelligence Suite Enterprise v3.4.0",
+  "version": "3.4.0",
+  "description": "Sistema Enterprise de análisis web con Framework Multi-Agente, Connection Monitor avanzado, DOM Intelligence específico por plataforma, Security Analysis completo y Performance Monitoring de nivel profesional",
+  
+  "permissions": [
+    "cookies",
+    "activeTab",
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "notifications",
+    "scripting",
+    "webNavigation",
+    "downloads",
+    "webRequest",
+    "declarativeNetRequest",
+    "background",
+    "contextMenus",
+    "alarms"
+  ],
+  
+  "optional_permissions": [
+    "sidePanel"
+  ],
+  
+  "host_permissions": [
+    "*://*.google.com/*",
+    "*://*.gemini.google.com/*",
+    "*://*.openai.com/*",
+    "*://chat.openai.com/*",
+    "*://*.anthropic.com/*",
+    "*://claude.ai/*",
+    "*://api.deepseek.com/*",
+    "*://chat.deepseek.com/*",
+    "*://*.qwen.alibaba.com/*",
+    "*://api.perplexity.ai/*",
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "WebScraping Intelligence Suite Enterprise v3.4.0"
+  },
+  
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  
+  "options_page": "options.html",
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["ExtensionConnector.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "commands": {
+    "start_analysis": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
+      },
+      "description": "Iniciar análisis multi-agente inmediato"
+    },
+    "toggle_monitor": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "Command+Shift+M"
+      },
+      "description": "Alternar Connection Monitor"
+    },
+    "open_sidepanel": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Abrir Side Panel Enterprise"
+    },
+    "quick_export": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E",
+        "mac": "Command+Shift+E"
+      },
+      "description": "Exportación rápida de resultados"
+    }
+  },
+  
+  "minimum_chrome_version": "114"
+}

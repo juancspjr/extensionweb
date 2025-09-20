@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WebScraping Intelligence Suite Enterprise v3.4.0 - Options Page">
+    <title>WebScraping Suite - Options</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            padding: 32px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+        
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #f1f5f9;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+        
+        .option-description {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #2563eb;
+        }
+        
+        .btn-secondary {
+            background-color: #374151;
+            color: #f9fafb;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background-color: #374151;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .toggle-switch.active {
+            background-color: #3b82f6;
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+        
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #334155;
+            color: #64748b;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">⚙️ WebScraping Intelligence Suite</div>
+            <div class="subtitle">Enterprise Configuration v3.4.0</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">🎨 Appearance</div>
+            
+            <div class="option-group">
+                <label class="option-label">Theme</label>
+                <div class="option-description">Choose between light and dark theme</div>
+                <div style="display: flex; gap: 12px; margin-top: 8px;">
+                    <button class="btn btn-secondary" onclick="setTheme('dark')">🌙 Dark</button>
+                    <button class="btn btn-secondary" onclick="setTheme('light')">☀️ Light</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">🤖 Multi-Agent Settings</div>
+            
+            <div class="option-group">
+                <label class="option-label">Auto-Analysis</label>
+                <div class="option-description">Automatically start analysis when visiting supported AI platforms</div>
+                <div class="toggle-switch" id="auto-analysis-toggle" onclick="toggleAutoAnalysis()"></div>
+            </div>
+            
+            <div class="option-group">
+                <label class="option-label">Connection Monitor</label>
+                <div class="option-description">Automatically start connection monitoring</div>
+                <div class="toggle-switch" id="auto-monitor-toggle" onclick="toggleAutoMonitor()"></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">📊 Performance</div>
+            
+            <div class="option-group">
+                <label class="option-label">Update Interval</label>
+                <div class="option-description">How often to update real-time data (seconds)</div>
+                <select style="padding: 8px; border-radius: 4px; background-color: #374151; color: white; border: 1px solid #4b5563;">
+                    <option value="1">1 second</option>
+                    <option value="2">2 seconds</option>
+                    <option value="5">5 seconds</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">📤 Export Settings</div>
+            
+            <div class="option-group">
+                <label class="option-label">Default Export Format</label>
+                <div class="option-description">Default format for quick exports</div>
+                <select style="padding: 8px; border-radius: 4px; background-color: #374151; color: white; border: 1px solid #4b5563;">
+                    <option value="json">JSON</option>
+                    <option value="csv">CSV</option>
+                    <option value="pdf">PDF</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>WebScraping Intelligence Suite Enterprise v3.4.0</p>
+            <p>Framework Multi-Agente Development Team</p>
+        </div>
+    </div>
+    
+    <script>
+        function setTheme(theme) {
+            document.documentElement.className = `theme-${theme}`;
+            chrome.storage.local.set({ theme: theme });
+            console.log('Theme set to:', theme);
+        }
+        
+        function toggleAutoAnalysis() {
+            const toggle = document.getElementById('auto-analysis-toggle');
+            toggle.classList.toggle('active');
+            const isActive = toggle.classList.contains('active');
+            chrome.storage.local.set({ autoAnalysis: isActive });
+            console.log('Auto-analysis:', isActive);
+        }
+        
+        function toggleAutoMonitor() {
+            const toggle = document.getElementById('auto-monitor-toggle');
+            toggle.classList.toggle('active');
+            const isActive = toggle.classList.contains('active');
+            chrome.storage.local.set({ autoMonitor: isActive });
+            console.log('Auto-monitor:', isActive);
+        }
+        
+        // Load saved settings
+        chrome.storage.local.get(['theme', 'autoAnalysis', 'autoMonitor'], (result) => {
+            if (result.theme) {
+                setTheme(result.theme);
+            }
+            
+            if (result.autoAnalysis) {
+                document.getElementById('auto-analysis-toggle').classList.add('active');
+            }
+            
+            if (result.autoMonitor) {
+                document.getElementById('auto-monitor-toggle').classList.add('active');
+            }
+        });
+        
+        console.log('✅ Options Page v3.4.0 Enterprise loaded');
+    </script>
+</body>
+</html>
